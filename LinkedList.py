@@ -16,6 +16,18 @@ class LinkedList:
         self.head = new_node
         return self.head
 
+    def insert_at_search_item(self, search_item, data):
+        new_node = Node(data)
+        temp = self.head
+        prev = None
+        while temp and temp.data != search_item:
+            prev = temp
+            temp = temp.next
+        new_node.next = prev.next
+        prev.next = new_node
+        return self.head
+
+
     def insert_at(self, position, data):
         new_node = Node(data)
         if self.head is None or position == 1:
@@ -60,5 +72,7 @@ if __name__ == "__main__":
     list.insert_at(1,9)
     list.print()
     list.insert_at(2,10)
+    list.print()
+    list.insert_at_search_item(1, 99)
     list.print()
 
