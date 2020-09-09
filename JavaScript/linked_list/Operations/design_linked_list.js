@@ -1,6 +1,6 @@
 class ListNode {
     constructor(data, next) {
-        this.data = data === undefined ? 0 : data;
+        this.val = data === undefined ? 0 : data;
         this.next = next === undefined ? null : next;
     }
 }
@@ -29,7 +29,7 @@ MyLinkedList.prototype.get = function (index) {
         curr = curr.next;
         index--;
     }
-    return curr !== null ? curr.data : -1;
+    return curr !== null ? curr.val : -1;
 };
 
 /**
@@ -101,16 +101,50 @@ MyLinkedList.prototype.deleteAtIndex = function (index) {
     this.head = temp.next;
 };
 
+
+MyLinkedList.prototype.removeNthFromEnd = function (n) {
+    if (!this.head) return null;
+    let curr = this.head;
+    let length = 0;
+    while (curr) {
+        curr = curr.next;
+        length++;
+    }
+    //console.log(length);
+    length = length - n;
+    curr = new ListNode(0, this.head);
+    let temp = curr;
+    while (curr && length > 0) {
+        //console.log(curr.val);
+        curr = curr.next;
+        length--;
+    }
+    //if (curr & curr.next)
+    curr.next = curr.next.next;
+    this.head = temp.next;
+};
+
+
 /// Print the elements.
 MyLinkedList.prototype.print = function () {
     let curr = this.head;
     let arr = [];
-    while(curr !== null){
-        arr.push(curr.data);
+    while (curr !== null) {
+        arr.push(curr.val);
         curr = curr.next;
     }
     console.log(arr.join(","));
 };
 
+MyLinkedList.prototype.toArray = function (head) {
+    let curr = head;
+    let arr = [];
+    while (curr) {
+        arr.push(curr.val);
+        curr = curr.next;
+    }
+    return arr;
+};
 
-module.exports = {MyLinkedList};
+
+module.exports = {MyLinkedList, ListNode};
