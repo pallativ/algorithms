@@ -21,7 +21,6 @@ let recursive = function (head) {
     return node;
 };
 
-
 let getCloneNode = function (map, node) {
     if (node === null) return null;
     if (map.has(node))
