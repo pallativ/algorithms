@@ -20,4 +20,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="LinkedList\" />
+    <Folder Include="Queue\" />
+    <Folder Include="Stack\" />
+  </ItemGroup>
+
 </Project>

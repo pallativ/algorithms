@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 using System.Collections.Generic;
+using ds_algo.Extensions;
 
 namespace ds_algo.scratchpad
 {
@@ -26,6 +27,12 @@ namespace ds_algo.scratchpad
             stack.Push(12);
             output.WriteLine(string.Join(",", stack.ToArray()));
             Assert.Equal(new int[] { 12, 11, 10 }, stack.ToArray());
+        }
+
+        [Fact(DisplayName ="LinkedList Example")]
+        public void LinkedListExample()
+        {
+            var list = new LinkedList<int>();
         }
     }
 }
