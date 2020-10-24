@@ -16,8 +16,14 @@ const PriorityQueue = function (comparable) {
         }
     }
     this.dequeue = function () {
+        // Follow the steps to delete the element
+        // 1. Delete the element at the begining.
+        // 2. Copy the element from end of the list to begining of the list.
+        // 3. Heapify the location 0.
+        let lastElement = this.list.pop();
         let item = this.list.shift();
-        this.buildHeap();
+        this.list.unshift(lastElement);
+        this.Heapify(0);
         return item;
     }
 
