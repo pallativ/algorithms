@@ -77,4 +77,13 @@ test("Build Min Heapify", () => {
 });
 
 
+test("Heap Sort", () => {
+    let queue = new PriorityQueue((a, b) => a - b, [5,1,1,2,0,0]);
+    queue.heapSort();
+    queue.print();
+    //expect(queue.toArray()).toMatchObject([1, 2, 3, 6, 7, 8, 9]);
+});
+
+
+
 
