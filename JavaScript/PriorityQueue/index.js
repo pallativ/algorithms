@@ -1,6 +1,7 @@
-const PriorityQueue = function (comparable) {
+const PriorityQueue = function (comparable, list) {
     this.list = [];
     this.comparable = comparable;
+    this.n = 0;
     this.enqueue = function (item) {
         this.list.push(item);
         let i = this.list.length - 1;
@@ -15,6 +16,17 @@ const PriorityQueue = function (comparable) {
             i = parentLoc;
         }
     }
+
+    this.heapSort = function () {
+        let n = this.list.length;
+        for (let i = 1; i <= n; i++) {
+            let last = this.list[n - i];
+            this.list[n - i] = this.list[0];
+            this.list[0] = last;
+            this.Heapify(0, n - i);
+        }
+    }
+
     this.dequeue = function () {
         // Follow the steps to delete the element
         // 1. Delete the element at the begining.
@@ -23,7 +35,7 @@ const PriorityQueue = function (comparable) {
         let lastElement = this.list.pop();
         let item = this.list.shift();
         this.list.unshift(lastElement);
-        this.Heapify(0);
+        this.Heapify(0, this.list.length);
         return item;
     }
 
@@ -33,31 +45,42 @@ const PriorityQueue = function (comparable) {
     }
 
     this.buildHeap = function () {
-        for (let i = 0; i < this.list.length; i++)
-            this.Heapify(i);
+        let n = this.list.length;
+        for (let i = Math.floor(n / 2); i >= 0; i--)
+            this.Heapify(i, n);
     }
 
-    this.Heapify = function (loc) {
+    this.Heapify = function (loc, n) {
         let left = 2 * loc + 1;
         let right = 2 * loc + 2;
-        let total = this.list.length - 1;
-        if (left > total && right > total)
-            return;
-        let largest = left;
-        if (comparable(this.list[loc], this.list[left]) >= 0)
-            largest = loc;
-        if (comparable(this.list[right], this.list[largest]) >= 0)
+
+        // if (left > total && right > total)
+        //     return;
+        let largest = loc;
+        if (left < n && this.comparable(this.list[left], this.list[loc]) > 0)
+            largest = left;
+        if (right < n && this.comparable(this.list[right], this.list[largest]) > 0)
             largest = right;
         if (largest !== loc) {
             let temp = this.list[loc];
             this.list[loc] = this.list[largest];
             this.list[largest] = temp;
-            this.Heapify(largest);
+            this.Heapify(largest, n);
         }
     }
 
     this.print = function () {
         console.log(this.list.join(","));
+    }
+
+    this.toArray = function () {
+        return [...this.list];
+    }
+
+
+    if (list && list.length > 0) {
+        this.list.push(...list);
+        this.buildHeap();
     }
 };
 
