@@ -7,9 +7,16 @@ test("Testing Binary Tree Insert", () => {
     console.log(inOrder(root));
 });
 
-test("Balanced Binary Tree", () => {
+test("Balanced Binary Tree - Left Imbalanced Tree", () => {
     let root = insert(null, 4);
     root = insert(root, 3);
     root = insert(root, 2);
+    console.log(inOrder(root));
+});
+
+test("Balanced Binary Tree - Right Imbalanced Tree", () => {
+    let root = insert(null, 1);
+    root = insert(root, 2);
+    root = insert(root, 3);
     console.log(inOrder(root));
 });

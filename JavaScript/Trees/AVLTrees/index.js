@@ -17,18 +17,34 @@ const insert = function (root, val) {
     let balance = getBalance(root);
     if (balance > 1 && val < root.left.val)
         return rightRotate(root);
+    if(balance < -1 && val > root.right.val)
+        return leftRotate(root);
     return root;
 }
 const rightRotate = function (nodeA) {
     let nodeB = nodeA.left;
-    let nodeC = nodeB.right;
+    let nodeD = nodeB.right;
 
     nodeB.right = nodeA;
-    nodeA.left = nodeC;
+    nodeA.left = nodeD;
     nodeA.height = Math.max(getHeight(nodeA.left), getHeight(nodeA.right)) + 1;
     nodeB.height = Math.max(getHeight(nodeB.left), getHeight(nodeB.right)) + 1;
     return nodeB;
 }
+
+const leftRotate = function (nodeA) {
+    let nodeB = nodeA.right;
+    let nodeD = nodeB.left;
+
+    nodeB.left = nodeA;
+    nodeA.right = nodeD;
+
+    nodeA.height = Math.max(getHeight(nodeA.left), getHeight(nodeA.right)) + 1;
+    nodeB.height = Math.max(getHeight(nodeB.left), getHeight(nodeB.right)) + 1;
+    return nodeB;
+}
+
+
 
 const getHeight = function (node) {
     if (!node) return 0;
