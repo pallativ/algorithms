@@ -15,10 +15,22 @@ const insert = function (root, val) {
         root.right = insert(root.right, val);
     root.height = Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     let balance = getBalance(root);
-    if (balance > 1 && val < root.left.val)
-        return rightRotate(root);
-    if(balance < -1 && val > root.right.val)
-        return leftRotate(root);
+    if (balance > 1) {
+        if (getHeight(root.left.left) > getHeight(root.left.right))
+            return rightRotate(root);
+        else {
+            root.left = leftRotate(root.left);
+            return rightRotate(root);
+        }
+    }
+    if (balance < -1){
+        if(getHeight(root.right.right) > getHeight(root.right.left))
+            return leftRotate(root);
+        else {
+            root.right = rightRotate(root.right);
+            return leftRotate(root);
+        }
+    }
     return root;
 }
 const rightRotate = function (nodeA) {
@@ -44,8 +56,6 @@ const leftRotate = function (nodeA) {
     return nodeB;
 }
 
-
-
 const getHeight = function (node) {
     if (!node) return 0;
     return node.height;
@@ -56,10 +66,9 @@ const getBalance = function (node) {
     return getHeight(node.left) - getHeight(node.right);
 }
 
-
 const inOrder = function (root) {
     if (!root) return [];
     return [...inOrder(root.left), root.val, ...inOrder(root.right)];
 }
 
-module.exports = {TreeNode, insert, inOrder}
+module.exports = {TreeNode, insert, inOrder, getBalance}
