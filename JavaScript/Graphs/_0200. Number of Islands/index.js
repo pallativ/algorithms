@@ -79,4 +79,59 @@ const numIslands = function (grid) {
     return count;
 };
 
-module.exports = {numIslands};
+const numIslandsUsingBfs = function (grid) {
+    if (!grid || grid.length == 0) {
+        return 0;
+    }
+    let m = grid.length;
+    let n = grid[0].length;
+    let r = 0, c = 0;
+    let queue = [];
+    let count = 0;
+    let dr = [-1, 1, 0, 0];
+    let dc = [0, 0, -1, 1];
+
+    const getCoordinates = function (num) {
+        return [Math.floor(num / n), num % n]
+    }
+
+    const convertToPosition = function (r, c) {
+        return (r * n) + c;
+    }
+
+    const scanNeighboursAndVisit = function (r, c) {
+        let result = [];
+        for (let i = 0; i < 4; i++) {
+            let rr = r + dr[i];
+            let cc = c + dc[i];
+            if (rr < 0 || rr >= m || cc < 0 || cc >= n)
+                continue;
+            if (grid[rr][cc] === '1') {
+                result.push(convertToPosition(rr,cc));
+                grid[rr][cc] = '0';
+            }
+        }
+        return result;
+    }
+
+    const scan = function () {
+        for (r = 0; r < m; r++) {
+            for (c = 0; c < n; c++) {
+                if (grid[r][c] === '1') {
+                    grid[r][c] = '0'; // Mark node as visit;
+                    count++;
+                    queue.push(convertToPosition(r, c));
+                    while (queue.length) {
+                        let [cr, cc] = getCoordinates(queue.shift());
+                        queue.push(...scanNeighboursAndVisit(cr, cc));
+                    }
+                }
+            }
+        }
+    }
+    scan();
+
+    return count;
+}
+
+module.exports = {numIslands, numIslandsUsingBfs};
