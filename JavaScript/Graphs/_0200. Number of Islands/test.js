@@ -31,4 +31,14 @@ test("Find number Of Islands using BFS", () => {
     ];
     let result1 = numIslandsUsingBfs(grid);
     expect(result1).toBe(3);
+
+
+    grid = [
+        ["1", "1", "1", "1", "0"],
+        ["1", "1", "0", "1", "0"],
+        ["1", "1", "0", "0", "0"],
+        ["0", "0", "0", "0", "0"]
+    ];
+    let result = numIslandsUsingBfs(grid);
+    expect(result).toBe(1);
 });
