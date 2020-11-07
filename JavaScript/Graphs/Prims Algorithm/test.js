@@ -1,5 +1,8 @@
 const {primsAlgorithm} = require('./index')
 
+
+//// Steps1:
+
 const convertMatrixToEdgeList = function (ar) {
     let edgeList = [];
     for (let i = 0; i < ar.length; i++) {
@@ -17,7 +20,7 @@ test("Find Minimum Spanning Tree", () => {
         [4, 2, 9],
         [4, 3, 8],
         [2, 3, 6]];
-    primsAlgorithm(4, edgeListWithWeight);
+    primsAlgorithm(5, edgeListWithWeight);
 });
 
 test("Find Minimum Spanning Tree - Case 1", () => {
