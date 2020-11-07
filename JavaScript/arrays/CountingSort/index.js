@@ -9,15 +9,21 @@ const countingSort = function (ar) {
 
     let count = new Array(findMax() + 1).fill(0);
 
-    for (let item in ar) {
+    for (let item of ar) {
         count[item]++;
     }
 
-    let i = 0;
-    for (let index = 0; index < count.length; index++) {
-        if (count[index] !== 0)
-            ar[i++] = index;
+    let j = 0;
+    ar = [];
+    while (j <= count.length) {
+        if (count[j] > 0) {
+            ar.push(j);
+            count[j]--;
+        } else
+            j++;
     }
     return ar;
 }
+
+
 module.exports = {countingSort};
