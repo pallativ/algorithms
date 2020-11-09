@@ -7,7 +7,7 @@ const lexicalOrder = function (n) {
     }
 
     let result = [];
-    for (let i = 1; i < 9; i++) {
+    for (let i = 1; i <= 9 && i <= n; i++) {
         dfs(n, i);
     }
     return result;
