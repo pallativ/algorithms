@@ -1,4 +1,4 @@
-const {isNumber} = require('./index')
+const {isNumber} = require('./IsNumber')
 
 test("\"0\" => true", () => {
     let result = isNumber("0");
@@ -48,7 +48,7 @@ test(" 6e-1", () => {
 
 test(" 99e2.5 ", () => {
     let result = isNumber(" 99e2.5 ");
-    expect(result).toBe(true);
+    expect(result).toBe(false);
 });
 
 
@@ -56,5 +56,34 @@ test("53.5e93", () => {
     let result = isNumber("53.5e93");
     expect(result).toBe(true);
 });
+
+test(" --6 ", () => {
+    let result = isNumber(" --6 ");
+    expect(result).toBe(false);
+});
+
+test("-+3", () => {
+    let result = isNumber("-+3");
+    expect(result).toBe(false);
+});
+
+test("95a54e53", () => {
+    let result = isNumber("95a54e53");
+    expect(result).toBe(false);
+});
+
+test(".", () => {
+    let result = isNumber(".");
+    expect(result).toBe(false);
+});
+
+
+test("1.", () => {
+    let result = isNumber("1.");
+    expect(result).toBe(true);
+});
+
+
+
 
 

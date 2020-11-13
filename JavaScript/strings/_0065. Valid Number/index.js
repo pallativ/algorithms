@@ -1,67 +1,78 @@
 const isNumber = function (s) {
-    let numbers = "0123456789";
-    let exponent = false;
-    let decimalPoint = false;
+    let ar = s.split('');
 
-    let i = 0;
-    while (s[i] === ' ') i++;
-
-    if (s[i] === '+' || s[i] === '-')
-        i++;
-
-    if (numbers.indexOf(s[i]) === -1)
-        return false;
-
-    let decimal = false;
-    for (; i < s.length; i++) {
-        if (numbers.indexOf(s[i]) === -1)
-            break;
-        decimal = true;
-    }
-
-    if (decimal && s[i] === '.') {
-        i++;
-        decimalPoint = true;
-    }
-
-    if (decimal && s[i] === 'e') {
-        i++;
-        exponent = true;
-    }
-    if (exponent === true && (s[i] === '+') || s[i] === '-')
-        i++;
-
-    for (; i < s.length; i++) {
-        if (numbers.indexOf(s[i]) === -1) {
-            break;
+    const removePrefixSpaces = function () {
+        while (ar.length && isSpace(ar[0])) {
+            ar.shift();
         }
-        exponent = false;
     }
 
-    if (exponent === true)
-        return false;
-
-    if (s[i] === '.') {
-        decimalPoint = true;
-        i++;
-    }
-
-
-    for (; i < s.length; i++) {
-        if (numbers.indexOf(s[i]) === -1) {
-            break;
+    const removeTrailingSpaces = function () {
+        while (ar.length && isSpace(ar[ar.length - 1])) {
+            ar.pop();
         }
-        decimalPoint = false;
     }
 
-    if (decimalPoint === true)
-        return false;
+    const isDigit = (c) => (c.charCodeAt(0) >= 48 && c.charCodeAt(0) <= 57);
+    const isSpace = (c) => c.charCodeAt(0) === 32;
 
-    for (; i < s.length; i++) {
-        if (s[i] !== ' ')
+    const removeDigits = function () {
+        // Remove Sign
+
+        if (!isDigit(ar[0]))
             return false;
+
+        while (ar.length && isDigit(ar[0]))
+            ar.shift();
+
+        if (ar[0] === '.') {
+            ar.shift();
+            if (ar.length === 0)
+                return false;
+            while (ar.length && isDigit(ar[0]))
+                ar.shift();
+        }
+        return true;
     }
-    return true;
+
+    removePrefixSpaces();
+    removeTrailingSpaces();
+
+    // All Spaces, no Numbers.
+    if (ar.length === 0)
+        return false;
+
+    if (ar[0] !== '+' && ar[0] !== '-' && ar[0] !== '.' && !isDigit(ar[0]))
+        return false;
+
+    if (ar[0] === '+' || ar[0] === '-' || ar[0] === '.')
+        ar.shift();
+
+    /// Scanning numbers.
+    let length = ar.length;
+    if (!removeDigits())
+        return false;
+
+    /// No Numbers found.
+    if (length === ar.length)
+        return false;
+
+    /// There is no exponent.
+    if (ar.length === 0)
+        return true;
+
+    /// Is there is no exponent, you won't reach here
+    if (ar[0] !== 'e')
+        return false;
+    else {
+        ar.shift();
+        if (ar.length === 0)
+            return false;
+        if (ar[0] !== '+' && ar[0] !== '-' && !isDigit(ar[0]))
+            return false;
+        removeDigits();
+    }
+    return ar.length === 0;
 };
 
 module.exports = {isNumber}
