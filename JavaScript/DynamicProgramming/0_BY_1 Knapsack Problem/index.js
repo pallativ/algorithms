@@ -1,4 +1,4 @@
-let knapsack = function () {
+let knapsack = function (profits, weights, capacity, currentIndex) {
     let knapsackRecursive = function (profits, weights, capacity, currentIndex) {
         if (capacity <= 0 || currentIndex >= weights.length)
             return 0;
@@ -13,4 +13,6 @@ let knapsack = function () {
 
         return Math.max(profit1, profit2);
     }
+    return knapsackRecursive(profits, weights, capacity, currentIndex);
 }
+module.exports = {knapsack}
