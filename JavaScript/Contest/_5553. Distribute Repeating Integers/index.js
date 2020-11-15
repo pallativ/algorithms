@@ -11,7 +11,7 @@ const canDistribute = function (nums, quantity) {
         counts.push(map.get(key));
     }
     counts.sort((a, b) => a - b);
-    quantity.sort((a, b) => b - a);
+    quantity.sort((a, b) => a - b);
 
     const solve = function (customerId) {
         if (customerId >= quantity.length)
