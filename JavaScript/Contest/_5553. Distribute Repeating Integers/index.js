@@ -17,7 +17,6 @@ const canDistribute = function (nums, quantity) {
         }
         return false;
     }
-
     const takeGreater = function (customerId) {
         for (let key of map.keys()) {
             if (map.get(key) >= quantity[customerId]) {
@@ -28,10 +27,7 @@ const canDistribute = function (nums, quantity) {
         }
         return false;
     }
-
-
     let result = new Array(quantity.length).fill(false);
-    quantity.sort((a, b) => b - a);
     for (let customerId = 0; customerId < quantity.length; customerId++) {
         takeEqual(customerId);
     }
