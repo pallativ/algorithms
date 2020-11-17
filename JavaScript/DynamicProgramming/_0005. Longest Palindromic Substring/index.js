@@ -52,8 +52,52 @@ const longestPalindrome = function (s) {
             }
         }
     }
-    console.log("#Total:" + totalPalindromeCount);
+    //console.log("#Total:" + totalPalindromeCount);
     return s.slice(start, start + maxLength);
 };
 
-module.exports = {longestPalindrome}
+const expandCenter = function (s) {
+    let maxLength = 1;
+    let start = 0;
+    let low = 0;
+    let high = 0;
+
+    const isValidIndex = function (index) {
+        return index >= 0 && index < s.length;
+    }
+
+    const getCountBy = function (low, high) {
+        return high - low + 1;
+    }
+
+    const matchChars = function (low, high) {
+        while (isValidIndex(low) && isValidIndex(high) && s[low] === s[high]) {
+            if (getCountBy(low, high) > maxLength) {
+                start = low;
+                maxLength = getCountBy(low, high);
+            }
+            low--;
+            high++;
+        }
+    }
+
+    const findEvenPalindrome = function (i) {
+        low = i - 1;
+        high = i;
+        matchChars(low, high);
+    }
+
+    const findOddPalindrome = function (i) {
+        let left = i - 1;
+        let right = i + 1;
+        matchChars(left, right);
+    }
+
+    for (let i = 1; i < s.length; i++) {
+        findEvenPalindrome(i);
+        findOddPalindrome(i);
+    }
+    return s.slice(start, start + maxLength);
+}
+
+module.exports = {longestPalindrome, expandCenter}
