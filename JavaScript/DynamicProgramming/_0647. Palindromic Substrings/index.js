@@ -1,5 +1,4 @@
-const longestPalindrome = function (s) {
-
+const countSubstrings = function (s) {
     const createTable = function (m, n) {
         let table = new Array(s.length);
         for (let i = 0; i < table.length; i++) {
@@ -21,16 +20,12 @@ const longestPalindrome = function (s) {
             if (s[i] === s[i + 1]) {
                 let ar = tb[i];
                 ar[i + 1] = 1;
-                start = i;
-                maxLength = 2;
                 totalPalindromeCount++;
             }
         }
     }
 
     let totalPalindromeCount = 0;
-    let maxLength = 1;
-    let start = 0; /// Start should be 0 Max Length 1;
     let table = createTable(s.length, s.length);
     markSingleCharPalindrome(table);
     //console.log(table);
@@ -45,15 +40,10 @@ const longestPalindrome = function (s) {
             if (s[i] === s[j] && table[i + 1][j - 1] === 1) {
                 table[i][j] = 1;
                 totalPalindromeCount++;
-                if (k > maxLength) {
-                    start = i;
-                    maxLength = k;
-                }
             }
         }
     }
-    console.log("#Total:" + totalPalindromeCount);
-    return s.slice(start, start + maxLength);
+    //console.log("#Total:" + totalPalindromeCount);
+    return totalPalindromeCount;
 };
-
-module.exports = {longestPalindrome}
+module.exports = {countSubstrings}
