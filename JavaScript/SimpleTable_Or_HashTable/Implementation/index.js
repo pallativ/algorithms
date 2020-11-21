@@ -60,6 +60,32 @@ class SimpleTable {
         return low;
     }
 
+    min() {
+        return this.keys[0];
+    }
+
+    max() {
+        return this.key[this.size() - 1];
+    }
+
+    floor(key) {
+        let i = this.search(key);
+        if (i < this.size() && this.keys[i] === key) return key;
+        return this.keys[this.size() - 1];
+    }
+
+    ceiling(key) {
+        let i = this.search(key);
+        if (i < this.size() && this.keys[i] === key) return key;
+    }
+
+    getNoKeys(keyLow, keyHigh) {
+        let low = this.search(keyLow);
+        let high = this.search(keyHigh);
+        if (this.ceiling(keyHigh)) return high - low + 1;
+        return high - low;
+    }
+
     containsKey(key) {
         let i = this.search(key);
         return i < this.size() && this.keys[i] === key;

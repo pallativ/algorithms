@@ -40,3 +40,13 @@ test("Test - put", () => {
     ST.put("A", 1);
     ST.print();
 });
+
+test("Test - getKeys", () => {
+    let ST = new SimpleTable();
+    ST.put("Z", 4);
+    ST.put("C", 3);
+    ST.put("B", 2);
+    ST.put("X", 1);
+    let result = ST.getNoKeys("C", "Z");
+    console.log(result);
+});
