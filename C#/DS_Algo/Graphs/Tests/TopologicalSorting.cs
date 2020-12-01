@@ -53,5 +53,25 @@ namespace Datastructures.Graphs.Tests
             var topologicalSort = new TopologicalSort(3, graph);
             Assert.True(topologicalSort.IsSortable());
         }
+
+
+        [Fact]
+        public void Test_Topological_Sort()
+        {
+            var edgeList = new int[11][];
+            int index = 0;
+            edgeList[index++] = new[] { 5, 11};
+            edgeList[index++] = new[] { 11, 2 };
+            edgeList[index++] = new[] { 11, 9 };
+            edgeList[index++] = new[] { 11, 10 };
+            edgeList[index++] = new[] { 7, 11 };
+            edgeList[index++] = new[] { 7, 8 };
+            edgeList[index++] = new[] { 8, 9 };
+            edgeList[index++] = new[] { 3, 8 };
+            edgeList[index] = new[] { 3, 10 };
+            var graph = Graph.BuildDirectedGraph(edgeList);
+            var topologicalSort = new TopologicalSort(12, graph);
+            Assert.True(topologicalSort.IsSortable());
+        }
     }
 }

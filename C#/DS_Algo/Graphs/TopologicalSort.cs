@@ -9,7 +9,7 @@ namespace Datastructures.Graphs
 
         private readonly bool[] _visited;
 
-        private readonly ArrayList _list;
+        private readonly Queue<int> queue;
         private int _totalVertices = 0;
 
         public TopologicalSort(int totalVertices, Dictionary<int, HashSet<int>> graph)
@@ -19,7 +19,7 @@ namespace Datastructures.Graphs
             _visited = new bool[totalVertices + 1];
             for (int i = 0; i <= totalVertices; i++)
                 _visited[i] = false;
-            _list = new ArrayList();
+            queue = new Queue<int>();
         }
 
         public bool IsSortable()
@@ -37,8 +37,7 @@ namespace Datastructures.Graphs
                 DfsVisit(vertex);
             }
 
-            _list.Reverse();
-            return (int[])_list.ToArray(typeof(int));
+            return queue.ToArray();
         }
 
         private void DfsVisit(int vertex)
@@ -53,7 +52,7 @@ namespace Datastructures.Graphs
                     DfsVisit(nextVertex);
                 }
             }
-            _list.Insert(0, vertex);
+            queue.Enqueue(vertex);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Datastructures.Graphs
 {
@@ -14,6 +15,8 @@ namespace Datastructures.Graphs
             var graph = new Dictionary<int, HashSet<int>>();
             foreach (int[] edge in edgeList)
             {
+                if (edge == null)
+                    continue;
                 int from = edge[0];
                 int to = edge[1];
                 if (!graph.ContainsKey(from))
@@ -34,6 +37,8 @@ namespace Datastructures.Graphs
             var graph = new Dictionary<int, HashSet<int>>();
             foreach (int[] edge in edgeList)
             {
+                if (edge == null)
+                    continue;
                 int from = edge[0];
                 int to = edge[1];
                 if (!graph.ContainsKey(from))
@@ -47,6 +52,21 @@ namespace Datastructures.Graphs
                     graph[to].Add(from);
             }
             return graph;
+        }
+
+        // TODO : Implement a function to get the vertices with no incoming edge
+        // TODO : Vertices with 0 in-degree.
+        public static HashSet<int> GetVerticesWithInDegree(Dictionary<int, HashSet<int>> graph, int degree)
+        {
+            var hashSet = new HashSet<int>();
+            foreach (var vertex in graph.Keys)
+                hashSet.Add(vertex);
+            foreach (var vertex in hashSet)
+            {
+                if (graph.Values.Any(t => t.Contains(vertex)))
+                    hashSet.Remove(vertex);
+            }
+            return hashSet;
         }
     }
 }
