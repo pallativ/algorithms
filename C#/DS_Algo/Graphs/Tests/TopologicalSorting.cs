@@ -70,7 +70,7 @@ namespace Datastructures.Graphs.Tests
             edgeList[index++] = new[] { 3, 8 };
             edgeList[index] = new[] { 3, 10 };
             var graph = Graph.BuildDirectedGraph(edgeList);
-            var topologicalSort = new TopologicalSort(12, graph);
+            var topologicalSort = new TopologicalSort(13, graph);
             Assert.True(topologicalSort.IsSortable());
         }
     }

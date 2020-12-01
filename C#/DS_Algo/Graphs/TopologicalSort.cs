@@ -9,8 +9,8 @@ namespace Datastructures.Graphs
 
         private readonly bool[] _visited;
 
-        private readonly Queue<int> queue;
-        private int _totalVertices = 0;
+        private readonly Queue<int> _queue;
+        private readonly int _totalVertices = 0;
 
         public TopologicalSort(int totalVertices, Dictionary<int, HashSet<int>> graph)
         {
@@ -19,12 +19,12 @@ namespace Datastructures.Graphs
             _visited = new bool[totalVertices + 1];
             for (int i = 0; i <= totalVertices; i++)
                 _visited[i] = false;
-            queue = new Queue<int>();
+            _queue = new Queue<int>();
         }
 
         public bool IsSortable()
         {
-            CycleDetection cycleDetection = new CycleDetection(_graph);
+            CycleDetection cycleDetection = new CycleDetection(_totalVertices, _graph);
             return !cycleDetection.IsCyclicGraph();
         }
 
@@ -37,7 +37,7 @@ namespace Datastructures.Graphs
                 DfsVisit(vertex);
             }
 
-            return queue.ToArray();
+            return _queue.ToArray();
         }
 
         private void DfsVisit(int vertex)
@@ -52,7 +52,7 @@ namespace Datastructures.Graphs
                     DfsVisit(nextVertex);
                 }
             }
-            queue.Enqueue(vertex);
+            _queue.Enqueue(vertex);
         }
     }
 }

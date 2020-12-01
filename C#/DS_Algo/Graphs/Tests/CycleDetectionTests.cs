@@ -12,7 +12,7 @@ namespace Datastructures.Graphs.Tests
             edgeList[1] = new int[] { 2, 3 };
             edgeList[2] = new int[] { 3, 1 };
             var graph = Graph.BuildDirectedGraph(edgeList);
-            CycleDetection cycleDetector = new CycleDetection(graph);
+            CycleDetection cycleDetector = new CycleDetection(3, graph);
             Assert.True(cycleDetector.IsCyclicGraph());
         }
 
@@ -24,7 +24,7 @@ namespace Datastructures.Graphs.Tests
             edgeList[1] = new int[] { 2, 3 };
             edgeList[2] = new int[] { 3, 4 };
             var graph = Graph.BuildDirectedGraph(edgeList);
-            CycleDetection cycleDetector = new CycleDetection(graph);
+            CycleDetection cycleDetector = new CycleDetection(4, graph);
             Assert.False(cycleDetector.IsCyclicGraph());
         }
 
@@ -37,7 +37,7 @@ namespace Datastructures.Graphs.Tests
             edgeList[2] = new int[] { 3, 4 };
             edgeList[3] = new int[] { 2, 4 };
             var graph = Graph.BuildDirectedGraph(edgeList);
-            CycleDetection cycleDetector = new CycleDetection(graph);
+            CycleDetection cycleDetector = new CycleDetection(4, graph);
             Assert.False(cycleDetector.IsCyclicGraph());
         }
     }
