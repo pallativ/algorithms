@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Algorithms
+namespace Datastructures.mathematics
 {
     //https://www.techgig.com/practice/result/all-a-alphabets-well/Um1MNS93M2ZTelVCc3NkSytDdVRidz09
     public class AllAsWell

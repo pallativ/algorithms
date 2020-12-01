@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
-namespace ds_algo.strings
+namespace Datastructures.strings
 {
     public partial class  StringExtensions
     {

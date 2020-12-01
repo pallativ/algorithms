@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 
-namespace ds_algo.Graphs
+namespace Datastructures.Graphs.Tests
 {
     public class CycleDetectionTests
     {

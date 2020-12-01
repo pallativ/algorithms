@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>Datastructures</RootNamespace>
+
+    <AssemblyName>DataStructures</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

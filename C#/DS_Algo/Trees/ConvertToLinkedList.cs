@@ -1,12 +1,6 @@
-﻿using ds_algo.Extensions;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace ds_algo.Trees
+namespace Datastructures.Trees
 {
     public class Solution
     {

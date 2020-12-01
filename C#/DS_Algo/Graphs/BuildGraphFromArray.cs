@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ds_algo.Graphs
+namespace Datastructures.Graphs
 {
     public class Graph
     {

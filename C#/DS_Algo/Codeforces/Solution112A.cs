@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ds_algo.Codeforces
+namespace Datastructures.Codeforces
 {
     public class Solution112A
     {

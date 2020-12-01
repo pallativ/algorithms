@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Algorithms
+namespace Datastructures.mathematics
 {
     public class FindDeadBulbs
     {

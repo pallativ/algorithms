@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 
-namespace ds_algo.strings.pangrams
+namespace Datastructures.strings.pangrams
 {
     public class PangramTests
     {

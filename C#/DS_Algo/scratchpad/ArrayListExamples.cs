@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
-using Xunit;
-using Microsoft.Extensions.Logging;
-using Xunit.Abstractions;
-using Xunit.Sdk;
+﻿using System.Collections;
 using System.Collections.Generic;
-using ds_algo.Extensions;
+using Xunit;
+using Xunit.Abstractions;
 
-namespace ds_algo.scratchpad
+namespace Datastructures.scratchpad
 {
     public class ArrayListExamples
     {

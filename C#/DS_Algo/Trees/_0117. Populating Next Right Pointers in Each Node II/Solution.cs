@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
-using static ds_algo.Trees.TreeBuilder;
 
-namespace ds_algo.Trees._0117._Populating_Next_Right_Pointers_in_Each_Node_II
+namespace Datastructures.Trees._0117._Populating_Next_Right_Pointers_in_Each_Node_II
 {
     public class Solution
     {

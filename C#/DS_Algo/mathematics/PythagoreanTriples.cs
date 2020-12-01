@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Algorithms.Mathematics
+namespace Datastructures.mathematics
 {
     public class PythagoreanTriples
     {

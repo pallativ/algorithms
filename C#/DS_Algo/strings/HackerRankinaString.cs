@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace ds_algo.strings
+namespace Datastructures.strings
 {
     public partial class StringExtensions
     {

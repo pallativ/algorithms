@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 
-namespace ds_algo.Trees
+namespace Datastructures.Trees
 {
     public class CheckBalancedTree
     {

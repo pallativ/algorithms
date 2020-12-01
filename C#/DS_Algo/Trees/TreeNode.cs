@@ -1,4 +1,4 @@
-﻿namespace ds_algo.Trees
+﻿namespace Datastructures.Trees
 {
     public class TreeNode<T>
     {
