@@ -10,14 +10,22 @@ namespace Datastructures.Graphs
         private readonly bool[] _visited;
 
         private readonly ArrayList _list;
+        private int _totalVertices = 0;
 
-        public TopologicalSort(Dictionary<int, HashSet<int>> graph)
+        public TopologicalSort(int totalVertices, Dictionary<int, HashSet<int>> graph)
         {
+            _totalVertices = totalVertices;
             _graph = graph;
-            _visited = new bool[graph.Keys.Count + 1];
-            for (int i = 0; i < _visited.Length; i++)
+            _visited = new bool[totalVertices + 1];
+            for (int i = 0; i <= totalVertices; i++)
                 _visited[i] = false;
             _list = new ArrayList();
+        }
+
+        public bool IsSortable()
+        {
+            CycleDetection cycleDetection = new CycleDetection(_graph);
+            return !cycleDetection.IsCyclicGraph();
         }
 
         public int[] Sort()
@@ -28,17 +36,22 @@ namespace Datastructures.Graphs
                     continue;
                 DfsVisit(vertex);
             }
+
+            _list.Reverse();
             return (int[])_list.ToArray(typeof(int));
         }
 
         private void DfsVisit(int vertex)
         {
             _visited[vertex] = true;
-            foreach (int nextVertex in _graph[vertex])
+            if (_graph.ContainsKey(vertex))
             {
-                if (_visited[vertex])
-                    continue;
-                DfsVisit(nextVertex);
+                foreach (int nextVertex in _graph[vertex])
+                {
+                    if (_visited[nextVertex])
+                        continue;
+                    DfsVisit(nextVertex);
+                }
             }
             _list.Insert(0, vertex);
         }
