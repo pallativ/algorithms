@@ -27,8 +27,11 @@ namespace Datastructures.DP
             }
             else
             {
-                LongestPalindrome(s, i, j - 1);
-                LongestPalindrome(s, i + 1, j);
+                if (maxLength < j - i)
+                {
+                    LongestPalindrome(s, i, j - 1);
+                    LongestPalindrome(s, i + 1, j);
+                }
             }
         }
         private bool IsPalindrome(string s, int i, int j,
@@ -61,6 +64,8 @@ namespace Datastructures.DP
         [InlineData("cbbd", "bb")]
         [InlineData("a", "a")]
         [InlineData("ac", "a")]
+        [InlineData("abbcccbbbcaaccbababcbcabca", "bbcccbb")]
+        [InlineData("babaddtattarrattatddetartrateedredividerb", "ddtattarrattatdd")]
         public void Test(string inputString, string expected)
         {
             var lcs = new LongestPalindromeSubstring();
