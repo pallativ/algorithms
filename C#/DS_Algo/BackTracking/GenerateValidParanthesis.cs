@@ -30,21 +30,24 @@ namespace Datastructures.BackTracking
 
         private void BackTrack(StringBuilder currentParanthesis, int open, int close)
         {
-            output.WriteLine($"({open}, {close}) => {currentParanthesis.ToString()}");
+            
             if (currentParanthesis.Length == max * 2)
             {
                 validParathesisList.Add(currentParanthesis.ToString());
+                output.WriteLine("*****");
                 return;
             }
             if (open < max)
             {
                 currentParanthesis.Append("(");
+                output.WriteLine($"({open}, {close}) => {currentParanthesis.ToString()}");
                 BackTrack(currentParanthesis, open + 1, close);
                 currentParanthesis.Remove(currentParanthesis.Length - 1, 1);
             }
             if (close < open)
             {
                 currentParanthesis.Append(")");
+                output.WriteLine($"({open}, {close}) => {currentParanthesis.ToString()}");
                 BackTrack(currentParanthesis, open, close + 1);
                 currentParanthesis.Remove(currentParanthesis.Length - 1, 1);
             }
