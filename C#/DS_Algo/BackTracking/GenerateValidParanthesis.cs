@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Datastructures.BackTracking
 {
@@ -10,6 +11,15 @@ namespace Datastructures.BackTracking
     {
         private int max = 0;
         private List<string> validParathesisList = new List<string>();
+
+        private readonly ITestOutputHelper output;
+
+        public GenerateValidParanthesis(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
+
+
         public List<string> Generate(int n)
         {
             max = n;
@@ -20,6 +30,7 @@ namespace Datastructures.BackTracking
 
         private void BackTrack(StringBuilder currentParanthesis, int open, int close)
         {
+            output.WriteLine($"({open}, {close}) => {currentParanthesis.ToString()}");
             if (currentParanthesis.Length == max * 2)
             {
                 validParathesisList.Add(currentParanthesis.ToString());
