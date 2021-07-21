@@ -29,13 +29,13 @@ namespace Datastructures.BackTracking
             {
                 currentParanthesis.Append("(");
                 BackTrack(currentParanthesis, open + 1, close);
-                currentParanthesis = currentParanthesis.Remove(currentParanthesis.Length - 1, 1);
+                currentParanthesis.Remove(currentParanthesis.Length - 1, 1);
             }
-            if (close < max)
+            if (close < open)
             {
                 currentParanthesis.Append(")");
                 BackTrack(currentParanthesis, open, close + 1);
-                currentParanthesis = currentParanthesis.Remove(currentParanthesis.Length - 1, 1);
+                currentParanthesis.Remove(currentParanthesis.Length - 1, 1);
             }
         }
 
