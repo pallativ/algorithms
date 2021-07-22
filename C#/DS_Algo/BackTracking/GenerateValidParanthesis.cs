@@ -37,6 +37,7 @@ namespace Datastructures.BackTracking
                 output.WriteLine("*****");
                 return;
             }
+           
             if (open < max)
             {
                 currentParanthesis.Append("(");
@@ -44,6 +45,7 @@ namespace Datastructures.BackTracking
                 BackTrack(currentParanthesis, open + 1, close);
                 currentParanthesis.Remove(currentParanthesis.Length - 1, 1);
             }
+
             if (close < open)
             {
                 currentParanthesis.Append(")");
@@ -58,6 +60,8 @@ namespace Datastructures.BackTracking
         public void Test(Input input)
         {
             var actual = Generate(input.Max);
+            input.Result.Sort();
+            actual.Sort();
             Assert.Equal(input.Result, actual);
         }
     }
